@@ -1,6 +1,6 @@
 [package]
 name = "github-latest"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 description = "Get latest release tag for GitHub repositories"
 repository = "https://github.com/qtfkwk/github-latest"
@@ -11,6 +11,5 @@ anyhow = "1.0.79"
 clap = { version = "4.4.18", features = ["derive", "wrap_help"] }
 futures = "0.3.30"
 reqwest = "0.11.23"
-scraper = "0.18.1"
 tokio = { version = "1.35.1", features = ["full"] }
 veg = "0.4.8"
