@@ -1,6 +1,7 @@
 use anyhow::Result;
 use clap::Parser;
 use futures::{stream::FuturesOrdered, StreamExt};
+use std::collections::HashSet;
 use veg::Veg;
 
 #[derive(Debug)]
@@ -27,13 +28,28 @@ impl veg::Table for Row {
 #[derive(Parser)]
 #[command(about, version, max_term_width = 80)]
 struct Cli {
+    /// Exclude tags with
+    #[arg(short, default_value = "rc,pre,canary")]
+    exclude: String,
+
+    /// Show all tags (on the first tags page)
+    #[arg(short)]
+    all: bool,
+
     /// One or more GitHub repositories (`qtfkwk/github-latest`)
+    #[arg(value_name = "REPO")]
     repos: Vec<String>,
 }
 
 #[tokio::main]
 async fn main() -> Result<()> {
     let cli = Cli::parse();
+
+    let exclude = if cli.exclude.is_empty() {
+        HashSet::new()
+    } else {
+        cli.exclude.split(',').collect::<HashSet<_>>()
+    };
 
     let client = reqwest::Client::builder()
         .user_agent(env!("CARGO_PKG_NAME"))
@@ -44,26 +60,33 @@ async fn main() -> Result<()> {
     let mut gets = cli
         .repos
         .iter()
-        .map(|repo| client.get(format!("https://github.com/{repo}")).send())
+        .map(|repo| client.get(format!("https://github.com/{repo}/tags")).send())
         .collect::<FuturesOrdered<_>>();
 
     let mut i = 0;
     while let Some(res) = gets.next().await {
         let content = res?.text().await?;
-        match content
+
+        let tags = content
             .lines()
             .filter(|line| line.contains("tag/"))
-            .take(1)
-            .next()
-        {
-            Some(line) => {
-                let tag = line.split('"').skip(7).take(1).next().unwrap();
-                let tag = tag.split('/').skip(5).take(1).next().unwrap();
-                table.push(Row::new(&cli.repos[i], tag));
-            }
-            None => {
-                table.push(Row::new(&cli.repos[i], "?"));
-            }
+            .filter_map(|line| {
+                if let Some(tag) = line.split('"').skip(5).take(1).next() {
+                    tag.split('/').skip(5).take(1).next()
+                } else {
+                    None
+                }
+            })
+            .map(|tag| urlencoding::decode(tag).unwrap())
+            .filter(|tag| exclude.iter().all(|x| !tag.contains(x)))
+            .collect::<Vec<_>>();
+
+        if tags.is_empty() {
+            table.push(Row::new(&cli.repos[i], "?"));
+        } else if cli.all {
+            table.push(Row::new(&cli.repos[i], &tags.join(", ")));
+        } else {
+            table.push(Row::new(&cli.repos[i], tags.first().unwrap()));
         }
 
         i += 1;
