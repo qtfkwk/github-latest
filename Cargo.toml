@@ -1,16 +1,16 @@
 [package]
 name = "github-latest"
-version = "0.2.2"
+version = "0.2.3"
 edition = "2021"
 description = "Get latest tag(s) for GitHub repositories"
 repository = "https://github.com/qtfkwk/github-latest"
 license = "MIT"
 
 [dependencies]
-anyhow = "1.0.86"
-clap = { version = "4.5.11", features = ["derive", "wrap_help"] }
-futures = "0.3.30"
-reqwest = "0.12.5"
-tokio = { version = "1.39.1", features = ["full"] }
+anyhow = "1.0.90"
+clap = { version = "4.5.20", features = ["derive", "wrap_help"] }
+futures = "0.3.31"
+reqwest = "0.12.8"
+tokio = { version = "1.40.0", features = ["full"] }
 urlencoding = "2.1.3"
-veg = "0.5.1"
+veg = "0.5.2"
