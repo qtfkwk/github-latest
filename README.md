@@ -17,7 +17,7 @@ remote git repositories at GitHub and elsewhere via any supported protocol, and 
 
 ~~~text
 $ github-latest -V
-github-latest 0.2.3
+github-latest 0.2.4
 ~~~
 
 ~~~text
@@ -42,15 +42,15 @@ Options:
 $ github-latest qtfkwk/github-latest
 | Repository           | Latest |
 |----------------------|--------|
-| qtfkwk/github-latest | 0.2.2  |
+| qtfkwk/github-latest | 0.2.3  |
 
 ~~~
 
 ~~~text
 $ github-latest qtfkwk/github-latest -a
-| Repository           | Latest                            |
-|----------------------|-----------------------------------|
-| qtfkwk/github-latest | 0.2.2, 0.2.1, 0.2.0, 0.1.1, 0.1.0 |
+| Repository           | Latest                                   |
+|----------------------|------------------------------------------|
+| qtfkwk/github-latest | 0.2.3, 0.2.2, 0.2.1, 0.2.0, 0.1.1, 0.1.0 |
 
 ~~~
 
@@ -63,6 +63,7 @@ $ github-latest qtfkwk/github-latest -a
     * 0.2.1 (2024-03-11): Update dependencies
     * 0.2.2 (2024-07-26): Fix makefile; update dependencies
     * 0.2.3 (2024-10-18): Update dependencies
+    * 0.2.4 (2024-12-04): Update dependencies; add commit target to makefile
 
 [`urlencoding`]: https://crates.io/crates/urlencoding
 
