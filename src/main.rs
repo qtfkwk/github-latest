@@ -36,6 +36,10 @@ struct Cli {
     #[arg(short)]
     all: bool,
 
+    /// Quiet mode; just show the latest tag(s)
+    #[arg(short)]
+    quiet: bool,
+
     /// One or more GitHub repositories (`qtfkwk/github-latest`)
     #[arg(value_name = "REPO")]
     repos: Vec<String>,
@@ -81,18 +85,26 @@ async fn main() -> Result<()> {
             .filter(|tag| exclude.iter().all(|x| !tag.contains(x)))
             .collect::<Vec<_>>();
 
-        if tags.is_empty() {
-            table.push(Row::new(&cli.repos[i], "?"));
+        let t = if tags.is_empty() {
+            "?"
         } else if cli.all {
-            table.push(Row::new(&cli.repos[i], &tags.join(", ")));
+            &tags.join(", ")
         } else {
-            table.push(Row::new(&cli.repos[i], tags.first().unwrap()));
+            &tags.first().unwrap().to_string()
+        };
+
+        if cli.quiet {
+            println!("{t}");
+        } else {
+            table.push(Row::new(&cli.repos[i], t));
         }
 
         i += 1;
     }
 
-    println!("{}", table.markdown()?);
+    if !cli.quiet {
+        println!("{}", table.markdown()?);
+    }
 
     Ok(())
 }

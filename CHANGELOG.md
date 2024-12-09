@@ -8,6 +8,7 @@
     * 0.2.2 (2024-07-26): Fix makefile; update dependencies
     * 0.2.3 (2024-10-18): Update dependencies
     * 0.2.4 (2024-12-04): Update dependencies; add commit target to makefile
+* 0.3.0 (2024-12-09): Add `-q` option; update dependencies
 
 [`urlencoding`]: https://crates.io/crates/urlencoding
 

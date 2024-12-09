@@ -37,5 +37,10 @@ $ github-latest qtfkwk/github-latest -a
 !run:../target/release/github-latest qtfkwk/github-latest -a 2>&1
 ~~~
 
+~~~text
+$ github-latest qtfkwk/github-latest -q
+!run:../target/release/github-latest qtfkwk/github-latest -q 2>&1
+~~~
+
 !inc:../CHANGELOG.md
 
