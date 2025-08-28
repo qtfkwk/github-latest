@@ -1,6 +1,6 @@
 use anyhow::Result;
 use clap::Parser;
-use futures::{stream::FuturesOrdered, StreamExt};
+use futures::{StreamExt, stream::FuturesOrdered};
 use std::collections::HashSet;
 use veg::Veg;
 

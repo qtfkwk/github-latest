@@ -11,6 +11,7 @@
 * 0.3.0 (2024-12-09): Add `-q` option; update dependencies
     * 0.3.1 (2025-02-21): Update dependencies
     * 0.3.2 (2025-04-16): Update dependencies
+* 0.4.0 (2025-08-28): Update dependencies; 2024 edition
 
 [`urlencoding`]: https://crates.io/crates/urlencoding
 
