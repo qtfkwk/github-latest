@@ -1,8 +1,11 @@
-use anyhow::Result;
-use clap::Parser;
-use futures::{StreamExt, stream::FuturesOrdered};
-use std::collections::HashSet;
-use veg::Veg;
+use {
+    anyhow::Result,
+    clap::Parser,
+    clap_cargo::style::CLAP_STYLING,
+    futures::{StreamExt, stream::FuturesOrdered},
+    std::collections::HashSet,
+    veg::Veg,
+};
 
 #[derive(Debug)]
 struct Row {
@@ -11,11 +14,11 @@ struct Row {
 }
 
 impl Row {
-    fn new(repository: &str, tag: &str) -> Box<Row> {
-        Box::new(Row {
+    fn new(repository: &str, tag: &str) -> Row {
+        Row {
             repository: repository.to_string(),
             tag: tag.to_string(),
-        })
+        }
     }
 }
 
@@ -26,7 +29,7 @@ impl veg::Table for Row {
 }
 
 #[derive(Parser)]
-#[command(about, version, max_term_width = 80)]
+#[command(about, version, max_term_width = 80, styles = CLAP_STYLING)]
 struct Cli {
     /// Exclude tags with
     #[arg(short, default_value = "rc,pre,canary")]
@@ -96,7 +99,7 @@ async fn main() -> Result<()> {
         if cli.quiet {
             println!("{t}");
         } else {
-            table.push(Row::new(&cli.repos[i], t));
+            table.push(Box::new(Row::new(&cli.repos[i], t)));
         }
 
         i += 1;

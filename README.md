@@ -17,7 +17,7 @@ remote git repositories at GitHub and elsewhere via any supported protocol, and 
 
 ~~~text
 $ github-latest -V
-github-latest 0.4.1
+github-latest 0.4.2
 ~~~
 
 ~~~text
@@ -30,11 +30,11 @@ Arguments:
   [REPO]...  One or more GitHub repositories (`qtfkwk/github-latest`)
 
 Options:
-  -e <EXCLUDE>      Exclude tags with [default: rc,pre,canary]
-  -a                Show all tags (on the first tags page)
-  -q                Quiet mode; just show the latest tag(s)
-  -h, --help        Print help
-  -V, --version     Print version
+  -e <EXCLUDE>   Exclude tags with [default: rc,pre,canary]
+  -a             Show all tags (on the first tags page)
+  -q             Quiet mode; just show the latest tag(s)
+  -h, --help     Print help
+  -V, --version  Print version
 ~~~
 
 # Examples
@@ -43,7 +43,7 @@ Options:
 $ github-latest qtfkwk/github-latest
 | Repository           | Latest |
 |----------------------|--------|
-| qtfkwk/github-latest | 0.4.0  |
+| qtfkwk/github-latest | 0.4.1  |
 
 ~~~
 
@@ -51,13 +51,13 @@ $ github-latest qtfkwk/github-latest
 $ github-latest qtfkwk/github-latest -a
 | Repository           | Latest                                                               |
 |----------------------|----------------------------------------------------------------------|
-| qtfkwk/github-latest | 0.4.0, 0.3.2, 0.3.1, 0.3.0, 0.2.4, 0.2.3, 0.2.2, 0.2.1, 0.2.0, 0.1.1 |
+| qtfkwk/github-latest | 0.4.1, 0.4.0, 0.3.2, 0.3.1, 0.3.0, 0.2.4, 0.2.3, 0.2.2, 0.2.1, 0.2.0 |
 
 ~~~
 
 ~~~text
 $ github-latest qtfkwk/github-latest -q
-0.4.0
+0.4.1
 ~~~
 
 # Changelog
@@ -75,6 +75,7 @@ $ github-latest qtfkwk/github-latest -q
     * 0.3.2 (2025-04-16): Update dependencies
 * 0.4.0 (2025-08-28): Update dependencies; 2024 edition
     * 0.4.1 (2025-10-27): Update dependencies
+    * 0.4.2 (2025-11-12): Update dependencies; use [`clap-cargo`] `CLAP_STYLING`; clippy fixes
 
 [`urlencoding`]: https://crates.io/crates/urlencoding
 
