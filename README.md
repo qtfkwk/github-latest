@@ -17,7 +17,7 @@ remote git repositories at GitHub and elsewhere via any supported protocol, and 
 
 ~~~text
 $ github-latest -V
-github-latest 0.4.2
+github-latest 0.4.3
 ~~~
 
 ~~~text
@@ -43,7 +43,7 @@ Options:
 $ github-latest qtfkwk/github-latest
 | Repository           | Latest |
 |----------------------|--------|
-| qtfkwk/github-latest | 0.4.1  |
+| qtfkwk/github-latest | 0.4.2  |
 
 ~~~
 
@@ -51,13 +51,13 @@ $ github-latest qtfkwk/github-latest
 $ github-latest qtfkwk/github-latest -a
 | Repository           | Latest                                                               |
 |----------------------|----------------------------------------------------------------------|
-| qtfkwk/github-latest | 0.4.1, 0.4.0, 0.3.2, 0.3.1, 0.3.0, 0.2.4, 0.2.3, 0.2.2, 0.2.1, 0.2.0 |
+| qtfkwk/github-latest | 0.4.2, 0.4.1, 0.4.0, 0.3.2, 0.3.1, 0.3.0, 0.2.4, 0.2.3, 0.2.2, 0.2.1 |
 
 ~~~
 
 ~~~text
 $ github-latest qtfkwk/github-latest -q
-0.4.1
+0.4.2
 ~~~
 
 # Changelog
@@ -76,6 +76,7 @@ $ github-latest qtfkwk/github-latest -q
 * 0.4.0 (2025-08-28): Update dependencies; 2024 edition
     * 0.4.1 (2025-10-27): Update dependencies
     * 0.4.2 (2025-11-12): Update dependencies; use [`clap-cargo`] `CLAP_STYLING`; clippy fixes
+    * 0.4.3 (2025-11-14): Update dependencies; add `clippy::pedantic` to `cargo clippy` command in the `clippy` target in the makefile
 
 [`urlencoding`]: https://crates.io/crates/urlencoding
 
